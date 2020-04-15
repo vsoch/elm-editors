@@ -126,16 +126,28 @@
     </context>
 
     <context id="keyword" style-ref="keyword">
+      <keyword>alias</keyword>
+      <keyword>as</keyword>
       <keyword>case</keyword>
-      <keyword>type</keyword>
-      <keyword>type alias</keyword>
+      <keyword>command</keyword>
+      <keyword>effect</keyword>
       <keyword>else</keyword>
+      <keyword>exposing</keyword>
       <keyword>if</keyword>
       <keyword>import</keyword>
       <keyword>in</keyword>
+      <keyword>infix</keyword>
+      <keyword>left</keyword>
       <keyword>let</keyword>
       <keyword>module</keyword>
+      <keyword>non</keyword>
+      <keyword>of</keyword>
+      <keyword>port</keyword>
+      <keyword>right</keyword>
+      <keyword>subscription</keyword>
       <keyword>then</keyword>
+      <keyword>type</keyword>
+      <keyword>where</keyword>
     </context>
 
     <context id="body">
