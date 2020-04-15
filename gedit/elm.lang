@@ -18,7 +18,6 @@
     <style id="char-escape"  name="Escaped Character" map-to="def:special-char"/>
     <style id="float"        name="Float"        map-to="def:floating-point"/>
     <style id="decimal"      name="Decimal"      map-to="def:decimal"/>
-    <style id="octal"        name="Octal"        map-to="def:base-n-integer"/>
     <style id="hexadecimal"  name="Hex"          map-to="def:base-n-integer"/>
   </styles>
 
@@ -74,7 +73,6 @@
         \\(                   # leading backslash
         [abfnrtv\\"\'&amp;] | # escaped character
          [0-9]+ |             # decimal digits
-        o[0-7]+ |             # 'o' followed by octal digits
         x[0-9A-Fa-f]+ |       # 'x' followed by hex digits
         \^[A-Z@\[\\\]^_] |    # control character codes
         NUL | SOH | STX | ETX | EOT | ENQ | ACK |
@@ -153,7 +151,6 @@
         <context ref="char"/>
         <context ref="float"/>
         <context ref="hexadecimal"/>
-        <context ref="octal"/>
         <context ref="decimal"/>
       </include>
     </context>
