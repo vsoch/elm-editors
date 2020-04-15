@@ -18,7 +18,6 @@
     <style id="char-escape"  name="Escaped Character" map-to="def:special-char"/>
     <style id="float"        name="Float"        map-to="def:floating-point"/>
     <style id="decimal"      name="Decimal"      map-to="def:decimal"/>
-    <style id="octal"        name="Octal"        map-to="def:base-n-integer"/>
     <style id="hexadecimal"  name="Hex"          map-to="def:base-n-integer"/>
   </styles>
 
@@ -31,8 +30,6 @@
       <start>(?&lt;!\%{symbolchar})--+(?!\%{symbolchar})</start>
       <include>
         <context ref="def:in-comment"/>
-        <context ref="haddock:line-paragraph"/>
-        <context ref="haddock:directive"/>
       </include>
     </context>
 
@@ -41,23 +38,16 @@
       <end>-\}</end>
       <include>
         <context ref="def:in-comment"/>
-        <context ref="haddock:block-paragraph"/>
-        <context ref="haddock:directive"/>
         <context ref="block-comment"/>
       </include>
     </context>
 
-    <context id="pragma" style-ref="preprocessor">
-      <start>\{-#</start>
-      <end>#-\}</end>
-    </context>
-
     <context id="variable" style-ref="variable">
-      <match>\b[a-z_][0-9a-zA-Z_'#]*</match>
+      <match>\b[a-z_][0-9a-zA-Z_]*</match>
     </context>
 
     <context id="type-or-constructor" style-ref="type">
-      <match>\b[A-Z][0-9a-zA-Z._'#]*</match>
+      <match>\b[A-Z][0-9a-zA-Z_]*</match>
     </context>
 
     <context id="symbol" style-ref="symbol" extend-parent="false">
@@ -83,7 +73,6 @@
         \\(                   # leading backslash
         [abfnrtv\\"\'&amp;] | # escaped character
          [0-9]+ |             # decimal digits
-        o[0-7]+ |             # 'o' followed by octal digits
         x[0-9A-Fa-f]+ |       # 'x' followed by hex digits
         \^[A-Z@\[\\\]^_] |    # control character codes
         NUL | SOH | STX | ETX | EOT | ENQ | ACK |
@@ -132,45 +121,26 @@
       <match>0[xX][0-9a-fA-F]+</match>
     </context>
 
-    <context id="octal" style-ref="octal">
-      <match>0[oO][0-7]+</match>
-    </context>
-
     <context id="decimal" style-ref="decimal">
       <match>[0-9]+</match>
     </context>
 
     <context id="keyword" style-ref="keyword">
       <keyword>case</keyword>
-      <keyword>class</keyword>
       <keyword>type</keyword>
-      <keyword>default</keyword>
-      <keyword>deriving</keyword>
-      <keyword>do</keyword>
-      <keyword>mdo</keyword>
+      <keyword>type alias</keyword>
       <keyword>else</keyword>
-      <keyword>forall</keyword>
-      <keyword>foreign</keyword>
-      <keyword>hiding</keyword>
       <keyword>if</keyword>
       <keyword>import</keyword>
       <keyword>in</keyword>
-      <keyword>infix</keyword>
-      <keyword>infixl</keyword>
-      <keyword>infixr</keyword>
-      <keyword>instance</keyword>
       <keyword>let</keyword>
       <keyword>module</keyword>
-      <keyword>of</keyword>
-      <keyword>qualified</keyword>
       <keyword>then</keyword>
-      <keyword>where</keyword>
     </context>
 
     <context id="body">
       <include>
         <context ref="line-comment"/>
-        <context ref="pragma"/>
         <context ref="block-comment"/>
         <context ref="keyword"/>
         <context ref="variable"/>
@@ -181,17 +151,12 @@
         <context ref="char"/>
         <context ref="float"/>
         <context ref="hexadecimal"/>
-        <context ref="octal"/>
         <context ref="decimal"/>
       </include>
     </context>
 
     <context id="elm" class="no-spell-check">
       <include>
-        <context ref="def:shebang"/>
-        <context ref="c:if0-comment"/>
-        <context ref="c:include"/>
-        <context ref="c:preprocessor"/>
         <context ref="body"/>
       </include>
     </context>
